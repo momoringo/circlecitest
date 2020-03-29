@@ -21,7 +21,7 @@ const Ghj = () => {
 <>
     <Btr onClick={onClick}/>
     <Wrap />
-<p>{count}</p>
+<p>{count}耳みみみm</p>
 </>
 
     )
