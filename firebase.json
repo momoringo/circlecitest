@@ -16,7 +16,7 @@
     ],
     "rewrites": [
       {
-        "source": "/test",
+        "source": "/",
         "run": {
            "serviceId": "test",
            "region": "asia-northeast1"
