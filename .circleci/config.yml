@@ -10,7 +10,7 @@ jobs:                                            # 必須固定
           command: node -v
       - run:
           name: Decode dotenv file
-          command: echo $ENV | base64 --decode > .env
+          command: echo $CONF | base64 --decode > .env
       - run:
           name: show
           command: cat .env                       
