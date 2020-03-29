@@ -17,8 +17,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html",
-         "run": {
+        "run": {
            "serviceId": "test",
            "region": "asia-northeast1"
          }        

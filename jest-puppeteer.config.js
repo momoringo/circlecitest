@@ -6,9 +6,9 @@ module.exports = {
     },
   },
   server: {
-    command: process.env.SERVER === 'false' ? 'sleep 3600' : 'PORT=3000 yarn start',
-    port: 3000,
-    launchTimeout: 50000,
+    command: 'PORT=3001 yarn start',
+    port: 3001,
+    launchTimeout: 30000,
     // debug: true,
   },
 };

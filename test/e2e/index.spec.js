@@ -4,7 +4,7 @@ describe('Index page', () => {
   beforeAll(async () => {
     jest.setTimeout(50000)
     page = await browser.newPage()
-    await page.goto('http://127.0.0.1:3000')
+    await page.goto('http://127.0.0.1:3001')
   });
 
   afterAll(async () => {
