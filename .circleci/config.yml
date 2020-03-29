@@ -8,6 +8,9 @@ jobs:                                            # 必須固定
           name: 'npm version check'
           command: node -v
       - run:
+          name: addfile
+          command: touch test.html        
+      - run:
           name: package install
           command: yarn install
       - run:
