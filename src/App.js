@@ -5,7 +5,6 @@ import Rte from 'react-rte';
 
 
 const Btr = React.memo((props) => {
-  console.log(99);
   return <button onClick={props.onClick}>Click Me</button>
 });
 
