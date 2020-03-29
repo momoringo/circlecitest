@@ -10,7 +10,10 @@ jobs:                                            # 必須固定
           command: node -v
       - run:
           name: Decode dotenv file
-          command: echo $ENV | base64 --decode > .env             
+          command: echo $ENV | base64 --decode > .env
+      - run:
+          name: show
+          command: cat .env                       
 workflows:                                       # 定義したJobを流すフローを指定
   version: 2
   build_and_deploy:                              # 任意のフロー名でOK
