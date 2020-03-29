@@ -20,6 +20,7 @@
         "destination": "/index.html",
       
       },{
+        "source": "/test",
         "run": {
            "serviceId": "test",
            "region": "asia-northeast1"
