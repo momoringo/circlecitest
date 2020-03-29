@@ -21,10 +21,6 @@
            "serviceId": "test",
            "region": "asia-northeast1"
          }        
-      },      
-      {
-        "source": "/*.",
-        "destination": "/index.html"
       }
     ]
   },
