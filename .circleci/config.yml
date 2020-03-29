@@ -15,6 +15,9 @@ jobs:
           name: build
           command: yarn build
       - run:
+          name: test
+          command: yarn test:e2e
+      - run:
           name: deploy to Firebase Hosting
           command: ./node_modules/.bin/firebase deploy --except functions -P mlpj-d9574 --token=$FIREBASE_TOKEN
   st:

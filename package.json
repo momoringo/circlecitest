@@ -20,7 +20,8 @@
     "build": "react-scripts build",
     "test": "echo test",
     "eject": "react-scripts eject",
-    "deploy:test": "firebase deploy --except functions -P mlpj-d9574"
+    "deploy:test": "firebase deploy --except functions -P mlpj-d9574",
+    "test:e2e": "jest --config jest.e2e.config.js --runInBand ./test/e2e"
   },
   "eslintConfig": {
     "extends": "react-app"
