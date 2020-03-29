@@ -13,7 +13,10 @@ jobs:                                            # 必須固定
           command: yarn install
       - run:
           name: build
-          command: ls              
+          command: yarn build
+      - run:
+          name: deploy to Firebase Hosting
+          command: ./node_modules/.bin/firebase deploy --except functions -P mlpj-d9574 --token=$FIREBASE_TOKEN # プロジェクト上のfirebase-toolsでデプロイします                
 workflows:                                       # 定義したJobを流すフローを指定
   version: 2
   build_and_deploy:                              # 任意のフロー名でOK
