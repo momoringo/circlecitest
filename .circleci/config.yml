@@ -1,12 +1,12 @@
-version: 2                                       # 1/2/2.1の何れかを指定。バージョンによって記述の仕方が異なるので注意（現状であれば、2,2.1のどちらかが推奨みたい
-jobs:                                            # 必須固定
-  build:                                         # Job名/Jobが1つの場合は必ず"build:"
-    docker:                                      # ビルド環境(machine/macosなどのVPCを選ぶことも可能だけど、dockerが主流みたい
-      - image: circleci/node:8.16.1                # ビルドイメージを指定。firebaseCLIはnode.js ver6.0.0以上推奨であることを確認しつつ、現在のnode.js推奨バージョンである10を指定
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.16.1-browsers
     steps:
       - checkout
-      - run:                                     # firebaseCLI入れる前に念のためnpmバージョンチェック
-          name: 'npm version check'
+      - run:
+          name: 'node version check'
           command: node -v
       - run:
           name: package install
@@ -16,26 +16,26 @@ jobs:                                            # 必須固定
           command: yarn build
       - run:
           name: deploy to Firebase Hosting
-          command: ./node_modules/.bin/firebase deploy --except functions -P mlpj-d9574 --token=$FIREBASE_TOKEN # プロジェクト上のfirebase-toolsでデプロイします
-  st:                                         # Job名/Jobが1つの場合は必ず"build:"
-    docker:                                      # ビルド環境(machine/macosなどのVPCを選ぶことも可能だけど、dockerが主流みたい
-      - image: circleci/node:8.16.1                # ビルドイメージを指定。firebaseCLIはnode.js ver6.0.0以上推奨であることを確認しつつ、現在のnode.js推奨バージョンである10を指定
+          command: ./node_modules/.bin/firebase deploy --except functions -P mlpj-d9574 --token=$FIREBASE_TOKEN
+  st:
+    docker:
+      - image: circleci/node:8.16.1
     steps:
       - checkout
-      - run:                                     # firebaseCLI入れる前に念のためnpmバージョンチェック
+      - run:
           name: 'staging'
           command: node -v                          
-workflows:             # 定義したJobを流すフローを指定
+workflows:
   version: 2
-  build_and_deploy:                              # 任意のフロー名でOK
-    jobs:                                        # 実行Jobを配下に記述
+  build_and_deploy:
+    jobs:
       - build:
-          context: test                                 # 今回は”build"のみなので、これだけ！あまりフローを組む必要性ないですけど、必須みたいです！
+          context: test
           filters:
             branches:
               only: master
       - st:
-          context: test                                 # 今回は”build"のみなので、これだけ！あまりフローを組む必要性ないですけど、必須みたいです！
+          context: test
           filters:
             branches:
               only: staging
