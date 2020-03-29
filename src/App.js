@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Rte from 'react-rte';
+//import Rte from 'react-rte';
 
 
 const Btr = React.memo((props) => {
@@ -29,7 +29,7 @@ const Ghj = () => {
 
 
 function App() {
-    const [rteValue, setRteValue] = useState(Rte.createValueFromString('', 'html'));
+    //const [rteValue, setRteValue] = useState(Rte.createValueFromString('', 'html'));
   return (
     <div className="App">
       <header className="App-header">
