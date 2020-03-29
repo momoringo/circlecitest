@@ -17,7 +17,11 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/index.html",
+         "run": {
+           "serviceId": "test",
+           "region": "asia-northeast1"
+         }        
       }
     ]
   },
@@ -25,3 +29,6 @@
     "rules": "storage.rules"
   }
 }
+
+
+
