@@ -9,11 +9,14 @@ jobs:                                            # 必須固定
           name: 'npm version check'
           command: node -v
       - run:
-          name: Decode dotenv file
-          command: echo $CONF | base64 --decode > .env
+          name: package install
+          command: yarn install
       - run:
-          name: show
-          command: cat .env
+          name: build
+          command: yarn build
+      - run:
+          name: deploy to Firebase Hosting
+          command: ./node_modules/.bin/firebase deploy --except functions -P mlpj-d9574 --token=$FIREBASE_TOKEN # プロジェクト上のfirebase-toolsでデプロイします
   st:                                         # Job名/Jobが1つの場合は必ず"build:"
     docker:                                      # ビルド環境(machine/macosなどのVPCを選ぶことも可能だけど、dockerが主流みたい
       - image: circleci/node:8.16.1                # ビルドイメージを指定。firebaseCLIはnode.js ver6.0.0以上推奨であることを確認しつつ、現在のnode.js推奨バージョンである10を指定
@@ -21,7 +24,7 @@ jobs:                                            # 必須固定
       - checkout
       - run:                                     # firebaseCLI入れる前に念のためnpmバージョンチェック
           name: 'staging'
-          command: node -v
+          command: node -v                          
 workflows:             # 定義したJobを流すフローを指定
   version: 2
   build_and_deploy:                              # 任意のフロー名でOK
@@ -35,4 +38,4 @@ workflows:             # 定義したJobを流すフローを指定
           context: test                                 # 今回は”build"のみなので、これだけ！あまりフローを組む必要性ないですけど、必須みたいです！
           filters:
             branches:
-              only: staging               
+              only: staging
