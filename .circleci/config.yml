@@ -5,6 +5,12 @@ jobs:                                            # 必須固定
       - image: circleci/node:8.16.1                # ビルドイメージを指定。firebaseCLIはnode.js ver6.0.0以上推奨であることを確認しつつ、現在のnode.js推奨バージョンである10を指定
     steps:
       - checkout
+      - run:                                     # firebaseCLI入れる前に念のためnpmバージョンチェック
+          name: 'npm version check'
+          command: node -v
+      - run:
+          name: package install
+          command: yarn install
       - run:
           name: deploy to Firebase Hosting
           command: ./node_modules/.bin/firebase deploy --except functions -P mlpj-d9574 --token=$FIREBASE_TOKEN # プロジェクト上のfirebase-toolsでデプロイします                
