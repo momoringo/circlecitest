@@ -21,7 +21,8 @@ jobs:                                            # 必須固定
       - checkout
       - run:                                     # firebaseCLI入れる前に念のためnpmバージョンチェック
           name: 'staging'
-          command: node -v                 # 定義したJobを流すフローを指定
+          command: node -v
+workflows:             # 定義したJobを流すフローを指定
   version: 2
   build_and_deploy:                              # 任意のフロー名でOK
     jobs:                                        # 実行Jobを配下に記述
