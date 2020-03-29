@@ -4,21 +4,16 @@ jobs:                                            # 必須固定
     docker:                                      # ビルド環境(machine/macosなどのVPCを選ぶことも可能だけど、dockerが主流みたい
       - image: circleci/node:8.16.1                # ビルドイメージを指定。firebaseCLIはnode.js ver6.0.0以上推奨であることを確認しつつ、現在のnode.js推奨バージョンである10を指定
     steps:
+      - checkout
       - run:                                     # firebaseCLI入れる前に念のためnpmバージョンチェック
           name: 'npm version check'
           command: node -v
-      - run:
-          name: addfile
-          command: touch test.html        
       - run:
           name: package install
           command: yarn install
       - run:
           name: build
-          command: ls
-      - run:
-          name: deploy to Firebase Hosting
-          command: pwd # プロジェクト上のfirebase-toolsでデプロイします                
+          command: ls              
 workflows:                                       # 定義したJobを流すフローを指定
   version: 2
   build_and_deploy:                              # 任意のフロー名でOK
