@@ -17,11 +17,13 @@
     "rewrites": [
       {
         "source": "**",
+        "destination": "/index.html",
+      
+      },{
         "run": {
            "serviceId": "test",
            "region": "asia-northeast1"
-         },
-        "destination": "/index.html"            
+         }        
       }
     ]
   },
