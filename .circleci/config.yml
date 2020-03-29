@@ -4,10 +4,6 @@ jobs:                                            # 必須固定
     docker:                                      # ビルド環境(machine/macosなどのVPCを選ぶことも可能だけど、dockerが主流みたい
       - image: circleci/node:8.16.1                # ビルドイメージを指定。firebaseCLIはnode.js ver6.0.0以上推奨であることを確認しつつ、現在のnode.js推奨バージョンである10を指定
     steps:
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
       - run:                                     # firebaseCLI入れる前に念のためnpmバージョンチェック
           name: 'npm version check'
           command: node -v
@@ -16,7 +12,7 @@ jobs:                                            # 必須固定
           command: yarn install
       - run:
           name: build
-          command: yarn run test
+          command: ls
       - run:
           name: deploy to Firebase Hosting
           command: ./node_modules/.bin/firebase deploy --except functions -P mlpj-d9574 --token=$FIREBASE_TOKEN # プロジェクト上のfirebase-toolsでデプロイします                
