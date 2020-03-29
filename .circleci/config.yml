@@ -10,7 +10,7 @@ jobs:                                            # 必須固定
           command: node -v
       - run:
           name: package install
-          command: yarn install
+          command: ls
       - run:
           name: build
           command: ls              
