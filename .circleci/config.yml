@@ -1,7 +1,16 @@
-version: 2.1
-orbs:
-  hello: circleci/hello-build@0.0.7 # circleci/buildpack-deps Docker イメージを使います
-workflows:
-  "Hello Workflow":
-      jobs:
-        - hello/hello-build
+version: 2                                       # 1/2/2.1の何れかを指定。バージョンによって記述の仕方が異なるので注意（現状であれば、2,2.1のどちらかが推奨みたい
+jobs:                                            # 必須固定
+  build:                                         # Job名/Jobが1つの場合は必ず"build:"
+    docker:                                      # ビルド環境(machine/macosなどのVPCを選ぶことも可能だけど、dockerが主流みたい
+      - image: circleci/node:10                  # ビルドイメージを指定。firebaseCLIはnode.js ver6.0.0以上推奨であることを確認しつつ、現在のnode.js推奨バージョンである10を指定
+    steps:                                       # 実行内容記述開始の合図
+      - run:                                     # firebaseCLI入れる前に念のためnpmバージョンチェック
+          name: 'npm version check'
+workflows:                                       # 定義したJobを流すフローを指定
+  version: 2
+  build_and_deploy:                              # 任意のフロー名でOK
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master 
